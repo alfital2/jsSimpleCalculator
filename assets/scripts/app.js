@@ -1,1 +1,4 @@
-alert("this farts");
+let currentResult = 0 ;
+currentResult += 10;
+
+outputResult(currentResult,'');
