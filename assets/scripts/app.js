@@ -2,7 +2,6 @@ print = console.log;
 const defaultResult = 0 ;
 let currentResult = defaultResult ;
 let calculationDescription = '';
-let logEntries = []; //this will hold a documentation of all the operations that were done.
 let action;
 
 function getUserInput(){
@@ -12,7 +11,7 @@ function getUserInput(){
 }
 
 function cleareUserInput(){
-  userInput.value ='';
+  userInput.value=0
 }
 
 function createAndWriteOutput(operator , calculationBefore, numberToCalc){
@@ -27,8 +26,15 @@ function handleOperator(operatorType){
   action= operatorType;
 }
 
+function validateInputExist(num){
+  return isNaN(num);
+}
 function applyOperator(operator,num){
-  print(operator);
+  if(validateInputExist(num)){
+    alert('enter a number to proceed!');
+    return 'fail';
+  }
+
   const enteredNumber = num;
   const initialResult=currentResult;
   switch(operator){
@@ -45,7 +51,7 @@ function applyOperator(operator,num){
       createAndWriteOutput(operator,initialResult,enteredNumber);
       break;
     case '/':
-      if (currentResult == 0) {
+      if (enteredNumber == 0) {
         alert("division by zero isn't allowed!");
         return;
       }
@@ -59,7 +65,7 @@ function applyOperator(operator,num){
 function equals(){
   const userInput = getUserInput();
   const initialResult = currentResult;
-  applyOperator(action,userInput);
+  if(applyOperator(action,userInput)=='fail') return;
   createAndWriteOutput(action,initialResult,userInput);
   putNumberInTheUserInput(currentResult);
 }
@@ -80,8 +86,18 @@ numericButtons.forEach(function(currentBtn){
 })
 
 
+function resetInput(){
+  currentResult = defaultResult;
+  cleareUserInput();
+
+}
+
+
+
+
 addBtn.addEventListener('click',()=>handleOperator(addBtn.name));
 subtractBtn.addEventListener('click',()=>handleOperator(subtractBtn.name));
 multiplyBtn.addEventListener('click',()=>handleOperator(multiplyBtn.name));
 divideBtn.addEventListener('click',()=>handleOperator(divideBtn.name));
 equalsBtn.addEventListener('click',equals);
+clearBtn.addEventListener('click',resetInput);
