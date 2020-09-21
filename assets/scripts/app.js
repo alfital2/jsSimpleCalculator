@@ -94,11 +94,12 @@ function resetResultAndDescrition(val1,val2){
   document.getElementById('current-result').innerHTML = val2;
 }
 
-
+//assings listener for each number button
 const numericButtons = document.querySelectorAll('.numericBtn')
 numericButtons.forEach(function(currentBtn){
   currentBtn.addEventListener('click', ()=>putNumberInTheUserInput(currentBtn.name))
 })
+
 
 addBtn.addEventListener('click',()=>handleOperator(addBtn.name));
 subtractBtn.addEventListener('click',()=>handleOperator(subtractBtn.name));
@@ -106,14 +107,3 @@ multiplyBtn.addEventListener('click',()=>handleOperator(multiplyBtn.name));
 divideBtn.addEventListener('click',()=>handleOperator(divideBtn.name));
 equalsBtn.addEventListener('click',equals);
 clearBtn.addEventListener('click',resetInput);
-
-
-// input.addEventListener("keyup", function(event) {
-//   // Number 13 is the "Enter" key on the keyboard
-//   if (event.keyCode === 13) {
-//     // Cancel the default action, if needed
-//     event.preventDefault();
-//     // Trigger the button element with a click
-//     document.getElementById("myBtn").click();
-//   }
-// });
